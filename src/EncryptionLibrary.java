@@ -1,4 +1,5 @@
 import java.lang.*;
+import java.security.SecureRandom;
 import java.util.*;
 
 public class EncryptionLibrary {
@@ -68,9 +69,9 @@ public class EncryptionLibrary {
     }
 
     public String cbcEncryption (String plaintext, String keystring) {
-        int i = 0, block1; Random rand = new Random();
+        int i = 0, block1; SecureRandom srand = new SecureRandom();
         int[] ciphertext = new int[plaintext.length()]; //array the same size as the plaintext string given.
-        int IV = rand.nextInt(10000) + 1;
+        int IV = srand.nextInt(10000) + 1;
 
         while (keystring.length() < plaintext.length()) {
             keystring += '0';
