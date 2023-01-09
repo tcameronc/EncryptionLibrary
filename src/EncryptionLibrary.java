@@ -5,7 +5,7 @@ import java.util.*;
 public class EncryptionLibrary {
     public String teaEncryption(int key0, int key1, int key2, int key3, int L, int R) {
         int delta = 0x9e3779b9;
-        int sum = 0, n = 0;
+        int sum = 0;
 
         for (int i = 0; i < 32; i++) {// weird plus is xor
             sum += delta;
@@ -71,12 +71,12 @@ public class EncryptionLibrary {
     public String cbcEncryption (String plaintext, String keystring) {
         int i = 0, block1; SecureRandom srand = new SecureRandom();
         int[] ciphertext = new int[plaintext.length()]; //array the same size as the plaintext string given.
-        int IV = srand.nextInt(10000) + 1;
+        int IV = srand.nextInt(100);
 
         while (keystring.length() < plaintext.length()) {
             keystring += '0';
         }
-                             //initialization Vector 1 to 10000
+                                                                //initialization Vector 1 to 10000
         block1 = IV ^ plaintext.charAt(0);                     //xor first block with IV
         ciphertext[0] = block1 ^ keystring.charAt(0);          //xor already XOR'ed block with key
 
@@ -88,13 +88,13 @@ public class EncryptionLibrary {
 
         }
         i = 0;
-        System.out.println("Ciphertext is: ");
+        System.out.println("Encrypted plaintext is: ");
         while (i < plaintext.length()) {
-            System.out.print(" " + ciphertext[i]);
+            System.out.print("/" + ciphertext[i]);
             i++;
         }
-        System.out.println(" \n You have " + plaintext.length() + " numbers. ");
-        System.out.println("\n Initialization Vector is: "+IV);
+        System.out.println(" \nYou have " + plaintext.length() + " numbers. ");
+        System.out.println("\nInitialization Vector is: "+IV);
 
         return "";
 

@@ -13,7 +13,7 @@ public class Main {
             EncryptionLibrary encrypt = new EncryptionLibrary();
             Scanner userInput = new Scanner(System.in);
 
-            System.out.println("\n Choose one or stop to stop: \n" +
+            System.out.println("\nChoose one or type stop to end: \n" +
                     "caesarEncrypt, caesarDecrypt, \n" +
                     "cbcEncrypt, cbcDecrypt, \n" +
                     "simpleEncrypt, simpleDecrypt. \n");
@@ -26,7 +26,7 @@ public class Main {
                     System.out.println("How many numbers do you have?");
                     key0 = userInput.nextInt();
                     System.out.println("Enter your encrypted plaintext (numbers), " +
-                            " press enter at every space.");
+                            "press enter at every space.");
                     key = new int[key0];
                     for (int n = 0; n < key0; n++) {
                         key[n] = userInput.nextInt();
@@ -48,11 +48,18 @@ public class Main {
                 case "cbcdecrypt":
                     System.out.println("How many numbers do you have?");
                     key0 = userInput.nextInt();
-                    System.out.println("Enter your encrypted plaintext, press enter at every space");
                     key = new int[key0];
+
+                    System.out.println("Enter your encrypted plaintext separated by forward slashes.");
+                    keyString = userInput.next();
+
+                    String[] keylist = keyString.trim().split("/",0);             //separate string into individual chunks
+                    System.out.println(keylist[0]);
+
                     for (int n = 0; n < key0; n++) {
-                        key[n] = userInput.nextInt();
+                        key[n] = Integer.parseInt(keylist[n]);
                     }
+                    userInput.nextLine();
                     System.out.println("Enter previously given Initialization Vector");
                     int IV = userInput.nextInt();
                     userInput.nextLine();
