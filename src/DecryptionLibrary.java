@@ -67,7 +67,7 @@ public class DecryptionLibrary
         System.out.println("Decrypted text is:");
         while(i < limit )
         {
-            System.out.print(" " + (char) plaintext[i]);
+            System.out.print((char) plaintext[i]);
             i++;
         }
 
@@ -86,13 +86,12 @@ public class DecryptionLibrary
         plaintext[0] = block1 ^ ciphertext[0];                              //xor already XOR'ed block with key
 
         for (int n = 1; n < limit; n++) {
-            plaintext[n] = ciphertext[n-1] ^ keystring.charAt(n);          //xor plaintext with previous ciphertext block
-            i = (plaintext[n] ^ ciphertext[n]);                            //xor the result with the key
-            plaintext[n] = i;                                              //result
-
+            plaintext[n] = ciphertext[n-1] ^ ciphertext[n] ^ keystring.charAt(n);          //xor plaintext with previous ciphertext block
+                                                                            // result
         }
-        i = 0;
+
         System.out.println("Plaintext is: ");
+        i = 0;
         while (i < limit) {
             System.out.print((char) plaintext[i]);
             i++;

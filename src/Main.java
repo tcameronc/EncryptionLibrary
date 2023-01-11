@@ -7,6 +7,7 @@ public class Main {
         int offsetKey;
         int[] key = new int[2]; int L_[] = new int[100]; int R_[] = new int[100];
         String output, keyString, plaintext, select = "";//strings are written out
+        String[] keylist;
 
         while (!select.equals("stop")) {
             DecryptionLibrary decrypt = new DecryptionLibrary();
@@ -15,7 +16,7 @@ public class Main {
 
             System.out.println("\nChoose one or type stop to end: \n" +
                     "caesarEncrypt, caesarDecrypt, \n" +
-                    "cbcEncrypt, cbcDecrypt, \n" +
+                    "cbcEncrypt, cbcDecrypt \n" +
                     "simpleEncrypt, simpleDecrypt. \n");
 
             select = userInput.nextLine().toLowerCase();
@@ -25,12 +26,18 @@ public class Main {
                 case "simpledecrypt":
                     System.out.println("How many numbers do you have?");
                     key0 = userInput.nextInt();
-                    System.out.println("Enter your encrypted plaintext (numbers), " +
-                            "press enter at every space.");
                     key = new int[key0];
+
+                    System.out.println("Enter your encrypted plaintext separated by forward slashes.");
+                    keyString = userInput.next();
+
+                    keylist = keyString.trim().split("/",0);             //separate string into individual chunks
+
                     for (int n = 0; n < key0; n++) {
-                        key[n] = userInput.nextInt();
+                        key[n] = Integer.parseInt(keylist[n]);
                     }
+                    userInput.nextLine();
+
                     System.out.println("Enter ciphertext to XOR with encrypted " +
                             "plaintext for original");
                     keyString = userInput.next();
@@ -53,13 +60,12 @@ public class Main {
                     System.out.println("Enter your encrypted plaintext separated by forward slashes.");
                     keyString = userInput.next();
 
-                    String[] keylist = keyString.trim().split("/",0);             //separate string into individual chunks
-                    System.out.println(keylist[0]);
+                    keylist = keyString.trim().split("/",0);             //separate string into individual chunks
+                    userInput.nextLine();
 
                     for (int n = 0; n < key0; n++) {
                         key[n] = Integer.parseInt(keylist[n]);
                     }
-                    userInput.nextLine();
                     System.out.println("Enter previously given Initialization Vector");
                     int IV = userInput.nextInt();
                     userInput.nextLine();
