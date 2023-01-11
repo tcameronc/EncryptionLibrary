@@ -61,10 +61,10 @@ public class EncryptionLibrary {
         i = 0;
         System.out.println("Ciphertext is: ");
         while (i < plaintext.length()) {
-            System.out.print(" " + ciphertext[i]);
+            System.out.print(ciphertext[i] + "/");
             i++;
         }
-        System.out.println(" \n You have " + plaintext.length() + " numbers. ");
+        System.out.println("\nYou have " + plaintext.length() + " numbers. ");
         return "";
     }
 
@@ -76,21 +76,19 @@ public class EncryptionLibrary {
         while (keystring.length() < plaintext.length()) {
             keystring += '0';
         }
-                                                                //initialization Vector 1 to 10000
-        block1 = IV ^ plaintext.charAt(0);                     //xor first block with IV
-        ciphertext[0] = block1 ^ keystring.charAt(0);          //xor already XOR'ed block with key
+                                                                              //initialization Vector 1 to 10000
+        block1 = IV ^ plaintext.charAt(0);                                   //xor first block with IV
+        ciphertext[0] = block1 ^ keystring.charAt(0);                       //xor already XOR'ed block with key
 
         for (int n = 1; n < plaintext.length(); n++)
         {
-            ciphertext[n] = ciphertext[n-1] ^ plaintext.charAt(n);          //xor plaintext with previous ciphertext block
-            i = (ciphertext[n] ^ keystring.charAt(n));                      //xor the result with the key
-            ciphertext[n] = i;                                              //result
-
+            ciphertext[n] = ciphertext[n-1] ^ plaintext.charAt(n) ^ keystring.charAt(n);          //xor plaintext with previous ciphertext block
+                                                                            //xor the result with the key
         }
         i = 0;
         System.out.println("Encrypted plaintext is: ");
         while (i < plaintext.length()) {
-            System.out.print("/" + ciphertext[i]);
+            System.out.print(ciphertext[i] + "/" );
             i++;
         }
         System.out.println(" \nYou have " + plaintext.length() + " numbers. ");
