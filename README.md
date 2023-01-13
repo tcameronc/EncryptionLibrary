@@ -1,5 +1,5 @@
 
-Demonstration at shorturl.at/jqANR 
+Demonstration at https://docs.google.com/document/d/1-3Xcz3SKnGgVh7ahJT6ffLQHiqJeKugHFTtR69UalC0/edit
 
 The Encryption Library is a java application that lets users enter plaintext of any length and encrypt that into a secret message. Depending on the method used, the user may need to supply a key to get their ciphertext (encrypted message). 
 
